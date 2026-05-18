@@ -1,0 +1,102 @@
+@import 'aos/dist/aos.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --gold-primary: #C9A012;
+  --gold-light:   #E8C040;
+  --gold-dark:    #7A5C09;
+  --dark-bg:      #080808;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark-bg);
+  color: #f0e6c8;
+  font-family: var(--font-raleway), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #C9A012; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #E8C040; }
+
+/* ── Gold shimmer text ──────────────────────────────────── */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #7A5C09 0%,
+    #C9A012 20%,
+    #F0D060 50%,
+    #C9A012 80%,
+    #7A5C09 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 250% center; }
+  to   { background-position: -250% center; }
+}
+
+/* ── Gold glow card ─────────────────────────────────────── */
+.gold-glow {
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.gold-glow:hover {
+  box-shadow:
+    0 0 0 1px rgba(201,160,18,0.5),
+    0 0 30px rgba(201,160,18,0.2),
+    0 0 80px rgba(201,160,18,0.08);
+  transform: translateY(-3px);
+}
+
+/* ── Subtle noise texture overlay ──────────────────────── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+/* ── Responsive iframe container ───────────────────────── */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+
+/* ── AOS custom timings ─────────────────────────────────── */
+[data-aos] { transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important; }
