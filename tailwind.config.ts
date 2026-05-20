@@ -10,58 +10,29 @@ const config: Config = {
     extend: {
       colors: {
         gold: {
-          50:  '#FDF9ED',
-          100: '#FAF1D0',
-          200: '#F5E2A0',
-          300: '#EFD06A',
-          400: '#E8C040',
-          500: '#C9A012',
-          600: '#A07A0D',
-          700: '#7A5C09',
-          800: '#533E06',
-          900: '#2C2003',
-          950: '#160F01',
+          primary: '#D6A354',
+          hi:      '#F1C87A',
+          dk:      '#9A6A2F',
         },
         dark: {
-          950: '#030303',
-          900: '#080808',
-          800: '#0F0F0F',
-          700: '#161616',
-          600: '#1E1E1E',
-          500: '#262626',
+          primary:   '#050505',
+          secondary: '#0B0B0D',
+          card:      '#111111',
+          border:    '#1F1F1F',
         },
       },
       fontFamily: {
-        cinzel:  ['var(--font-cinzel)', 'serif'],
-        raleway: ['var(--font-raleway)', 'sans-serif'],
+        display: ["var(--font-bebas)", 'sans-serif'],
+        body:    ["var(--font-inter)",  'sans-serif'],
       },
       animation: {
-        shimmer:     'shimmer 3s linear infinite',
-        float:       'float 4s ease-in-out infinite',
-        'glow-pulse': 'glow-pulse 2.5s ease-in-out infinite',
-        'fade-in':   'fadeIn 0.6s ease forwards',
-      },
-      keyframes: {
-        shimmer: {
-          '0%':   { backgroundPosition: '200% center' },
-          '100%': { backgroundPosition: '-200% center' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%':       { transform: 'translateY(-10px)' },
-        },
-        'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(201,160,18,0.25)' },
-          '50%':       { boxShadow: '0 0 50px rgba(201,160,18,0.55)' },
-        },
-        fadeIn: {
-          '0%':   { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
+        shimmer:   'shimmer 3s linear infinite',
+        float:     'floatAnim 4s ease-in-out infinite',
+        pulse:     'pulse 2s infinite',
+        'fade-up': 'fadeUp 0.6s ease forwards',
       },
     },
   },
   plugins: [],
 }
-
 export default config

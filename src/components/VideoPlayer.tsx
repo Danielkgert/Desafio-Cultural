@@ -1,4 +1,4 @@
-import type { Municipio } from '@/data/mockData';
+import type { Municipio } from '../data/mockData';
 
 export default function VideoPlayer({ municipio }: { municipio: Municipio }) {
   return (

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { BANDAS_MOCK, type Banda } from '@/data/mockData';
+import { BANDAS_MOCK, type Banda } from '../data/mockData';
 
 export default function VotingSection({ municipioId }: { municipioId: string }) {
   const [bandas, setBandas] = useState<Banda[]>(() => {

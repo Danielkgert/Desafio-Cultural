@@ -1,4 +1,4 @@
-import { estados } from '@/data/mockData';
+import { estados } from '../data/mockData';
 
 export default function StatBar() {
   const totalMunicipios = estados.reduce((acc, e) => acc + e.municipios.length, 0);

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { Municipio, Estado } from '@/data/mockData';
+import type { Municipio, Estado } from '../data/mockData';
 
 interface Props { municipio: Municipio; estado: Estado; }
 

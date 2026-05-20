@@ -1,159 +1,94 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { estados, getEstado, getMunicipio, regiaoGradients } from '@/data/mockData';
-import Header from '@/components/Header';
+import { estados, getEstado, getMunicipio } from '../../../data/mockData';
+import Header from '../../../components/Header';
+import AmbientGlow from '../../../components/AmbientGlow';
+import VideoPlayer from '../../../components/VideoPlayer';
+import VotingSection from '../../../components/VotingSection';
 
-interface Props {
-  params: { estado: string; municipio: string };
-}
+interface Props { params: { estado: string; municipio: string } }
 
-/* Static paths for all municipalities */
 export function generateStaticParams() {
-  return estados.flatMap((e) =>
-    e.municipios.map((m) => ({ estado: e.id, municipio: m.id })),
-  );
+  return estados.flatMap(e => e.municipios.map(m => ({ estado: e.id, municipio: m.id })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const estado    = getEstado(params.estado);
   const municipio = getMunicipio(params.estado, params.municipio);
   if (!estado || !municipio) return {};
-  return {
-    title: `${municipio.nome} — ${estado.sigla}`,
-    description: municipio.descricao,
-  };
+  return { title: `${municipio.nome} — ${estado.sigla}`, description: municipio.descricao };
 }
 
 export default function MunicipioPage({ params }: Props) {
   const estado    = getEstado(params.estado);
   const municipio = getMunicipio(params.estado, params.municipio);
-
   if (!estado || !municipio) notFound();
 
-  /* Other municipalities for navigation */
-  const others = estado.municipios.filter((m) => m.id !== municipio.id);
+  const others = estado.municipios.filter(m => m.id !== municipio.id);
 
   return (
-    <main className="min-h-screen bg-dark-900 relative overflow-hidden">
-      <Header
-        breadcrumbs={[
-          { label: estado.nome, href: `/${estado.id}` },
-          { label: municipio.nome },
-        ]}
-      />
+    <main style={{ minHeight:'100vh', background:'var(--bg-primary)', position:'relative' }}>
+      <Header breadcrumbs={[
+        { label: estado.nome, href: `/${estado.id}` },
+        { label: municipio.nome },
+      ]} />
+      <AmbientGlow />
 
-      {/* Ambient glow */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[350px] rounded-full bg-gold-500/6 blur-[90px]" />
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ── Navigation bar ── */}
-        <div className="pt-24 mt-4 mb-8" data-aos="fade-right">
-          <Link
-            href={`/${estado.id}`}
-            className="inline-flex items-center gap-2 font-raleway text-sm
-                       text-gold-500/55 hover:text-gold-300 transition-colors group"
-          >
-            <span className="transition-transform group-hover:-translate-x-1">←</span>
-            Municípios de {estado.nome}
+      <div style={{ position:'relative', zIndex:1, maxWidth:860, margin:'0 auto', padding:'0 24px 80px' }}>
+        <div style={{ paddingTop:96, marginTop:16, marginBottom:28 }}>
+          <Link href={`/${estado.id}`} className="btn-outline" style={{ textDecoration:'none', display:'inline-block' }}>
+            ← Municípios de {estado.nome}
           </Link>
         </div>
 
-        {/* ── Page header ── */}
-        <div className="mb-8" data-aos="fade-up">
-          {/* Meta tags */}
-          <div className="flex items-center flex-wrap gap-2 mb-3">
-            <span className="font-cinzel text-xs font-bold text-gold-600/60 bg-dark-700 border border-gold-500/20 px-3 py-1 rounded-full">
-              {estado.sigla}
-            </span>
-            <span className="text-gold-700/40 text-xs">•</span>
-            <span className="font-raleway text-xs text-gold-600/50">
-              {estado.regiao}
-            </span>
+        {/* Header */}
+        <div style={{ marginBottom:28 }} data-aos="fade-up">
+          <div style={{ display:'flex', gap:8, marginBottom:10, flexWrap:'wrap', alignItems:'center' }}>
+            <span className="badge">{estado.sigla}</span>
+            <span style={{ color:'#333', fontSize:12 }}>•</span>
+            <span style={{ color:'var(--text-muted)', fontSize:12 }}>{estado.regiao}</span>
           </div>
-
-          {/* Title */}
-          <h1 className="font-cinzel text-3xl sm:text-5xl lg:text-6xl font-bold text-gold-100 mb-4 leading-tight">
+          <h1 className="font-display" style={{ fontSize:'clamp(32px,6vw,64px)', color:'var(--text)', lineHeight:1, marginBottom:12 }}>
             {municipio.nome}
           </h1>
-
-          {/* Description */}
-          <p className="font-raleway text-base sm:text-lg text-gold-400/60 leading-relaxed max-w-2xl">
-            {municipio.descricao}
-          </p>
-
-          {/* Divider */}
-          <div className="mt-6 flex items-center gap-3">
-            <div className="w-12 h-px bg-gold-500/50" />
-            <div className="w-1.5 h-1.5 rounded-full bg-gold-500/50" />
-            <div className="flex-1 h-px bg-gold-500/10" />
+          <p style={{ color:'var(--text-sec)', fontSize:15, lineHeight:1.7, maxWidth:600 }}>{municipio.descricao}</p>
+          <div style={{ display:'flex', alignItems:'center', gap:12, marginTop:20 }}>
+            <div style={{ width:40, height:1, background:'rgba(214,163,84,0.5)' }} />
+            <div style={{ width:5, height:5, borderRadius:'50%', background:'rgba(214,163,84,0.5)' }} />
+            <div style={{ flex:1, height:1, background:'rgba(214,163,84,0.08)' }} />
           </div>
         </div>
 
-        {/* ── Video Player ── */}
-        <div
-          className="relative rounded-2xl overflow-hidden mb-12
-                     border border-gold-500/25
-                     shadow-[0_0_60px_rgba(201,160,18,0.12),0_0_0_1px_rgba(201,160,18,0.1)]"
-          data-aos="zoom-in"
-          data-aos-delay="150"
-        >
-          {/* Top gradient accent */}
-          <div
-            className={`absolute top-0 left-0 right-0 h-1
-                        bg-gradient-to-r from-gold-700/60 via-gold-400/80 to-gold-700/60`}
-          />
-
-          {/* Responsive iframe */}
-          <div className="video-wrapper">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${municipio.videoId}?rel=0&modestbranding=1&color=white`}
-              title={`${municipio.nome} — Desafio Cultural`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
+        {/* Video */}
+        <div data-aos="zoom-in" data-aos-delay="150">
+          <VideoPlayer municipio={municipio} />
         </div>
 
-        {/* ── Other municipalities ── */}
+        {/* Voting */}
+        <VotingSection municipioId={municipio.id} />
+
+        {/* Outros municípios */}
         {others.length > 0 && (
-          <section className="mb-24" data-aos="fade-up">
-            <div className="flex items-center gap-4 mb-5">
-              <h3 className="font-cinzel text-sm font-semibold text-gold-500/60 tracking-widest uppercase">
+          <section data-aos="fade-up">
+            <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:16 }}>
+              <span className="font-display" style={{ fontSize:13, color:'rgba(214,163,84,0.5)', letterSpacing:'0.2em', textTransform:'uppercase', whiteSpace:'nowrap' }}>
                 Outros municípios de {estado.nome}
-              </h3>
-              <div className="flex-1 h-px bg-gradient-to-r from-gold-500/25 to-transparent" />
+              </span>
+              <div style={{ flex:1, height:1, background:'linear-gradient(to right, rgba(214,163,84,0.2), transparent)' }} />
             </div>
-
-            <div className="flex flex-wrap gap-3">
+            <div style={{ display:'flex', flexWrap:'wrap', gap:10 }}>
               {others.map((m, i) => (
-                <Link
-                  key={m.id}
-                  href={`/${estado.id}/${m.id}`}
-                  className="group px-4 py-2 rounded-full border border-gold-500/20 bg-dark-800
-                             font-raleway text-sm text-gold-400/60
-                             hover:text-gold-200 hover:border-gold-400/50 hover:bg-dark-700
-                             transition-all duration-300"
-                  data-aos="fade-up"
-                  data-aos-delay={i * 50}
-                >
-                  {m.nome}
-                  <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                <Link key={m.id} href={`/${estado.id}/${m.id}`} className="btn-outline"
+                      style={{ fontSize:13, textDecoration:'none' }}
+                      data-aos="fade-up" data-aos-delay={i * 50}>
+                  {m.nome} →
                 </Link>
               ))}
             </div>
-
-            {/* Back to state */}
-            <div className="mt-6">
-              <Link
-                href={`/${estado.id}`}
-                className="inline-flex items-center gap-2 font-cinzel text-xs
-                           text-gold-500/40 hover:text-gold-300/70 transition-colors
-                           tracking-widest uppercase border border-gold-500/15
-                           hover:border-gold-500/35 px-4 py-2 rounded-lg"
-              >
+            <div style={{ marginTop:20 }}>
+              <Link href={`/${estado.id}`} className="btn-outline"
+                    style={{ fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', textDecoration:'none', display:'inline-block' }}>
                 Ver todos os municípios
               </Link>
             </div>

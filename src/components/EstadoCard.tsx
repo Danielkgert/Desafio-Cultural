@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import type { Estado } from '@/data/mockData';
+import type { Estado } from '../data/mockData';
 
 export default function EstadoCard({ estado }: { estado: Estado }) {
   return (
