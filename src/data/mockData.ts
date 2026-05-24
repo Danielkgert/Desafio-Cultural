@@ -390,3 +390,14 @@ export const regiaoLabel: Record<Regiao, string> = {
   Sudeste:        'Sudeste',
   Sul:            'Sul',
 };
+
+export function regiaoToSlug(r: Regiao): string {
+  const map: Record<Regiao, string> = {
+    'Centro-Oeste': 'centro-oeste',
+    'Nordeste':     'nordeste',
+    'Norte':        'norte',
+    'Sudeste':      'sudeste',
+    'Sul':          'sul',
+  };
+  return map[r];
+}

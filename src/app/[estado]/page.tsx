@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const estado = getEstado(params.estado);
   if (!estado) return {};
-  return { title: `${estado.nome} — Municípios`, description: `Municípios de ${estado.nome} no Desafio Cultural.` };
+  return { title: `${estado.nome} — Municípios` };
 }
 
 export default function EstadoPage({ params }: Props) {
@@ -27,136 +27,240 @@ export default function EstadoPage({ params }: Props) {
   const totalSemAcesso = estado.municipios.length - totalComAcesso;
 
   return (
-    <main style={{ minHeight:'100vh', background:'var(--bg-primary)', position:'relative' }}>
+    <main style={{ minHeight: '100vh', background: 'var(--bg-primary)', position: 'relative' }}>
       <Header breadcrumbs={[{ label: estado.nome }]} />
       <AmbientGlow />
 
-      <div style={{ position:'relative', zIndex:1, maxWidth:1100, margin:'0 auto', padding:'0 24px' }}>
-        <div style={{ paddingTop:96, marginTop:16 }}>
-          <Link href="/" className="btn-outline" style={{ textDecoration:'none', display:'inline-block', marginBottom:32 }}>
-            ← Todos os estados
-          </Link>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto', padding: '0 16px' }}>
 
-          {/* Header do estado */}
-          <div style={{ display:'flex', alignItems:'flex-end', gap:20, marginBottom:12 }}>
-            <span className="font-display" style={{ fontSize:'clamp(72px,12vw,120px)', color:'rgba(214,163,84,0.08)', lineHeight:1, userSelect:'none' }}>
-              {estado.sigla}
-            </span>
-            <div style={{ paddingBottom:12 }}>
-              <span className="badge" style={{ marginBottom:8, display:'inline-flex' }}>{estado.regiao}</span>
-              <h1 className="font-display" style={{ fontSize:'clamp(28px,5vw,56px)', color:'var(--text)', display:'block', lineHeight:1 }}>
-                {estado.nome}
-              </h1>
-              <p style={{ color:'var(--text-muted)', fontSize:13, marginTop:6 }}>
-                {totalComAcesso} município{totalComAcesso !== 1 ? 's' : ''} participando
-                {totalSemAcesso > 0 && (
-                  <span style={{ color:'#444', marginLeft:8 }}>
-                    · {totalSemAcesso} ainda não aderiu{totalSemAcesso !== 1 ? 'ram' : ''}
-                  </span>
-                )}
-              </p>
+        {/* Voltar */}
+        <div style={{ paddingTop: 76, marginBottom: 20 }}>
+          <Link href="/" className="btn-outline" style={{ display: 'inline-block' }}>
+            ← Estados
+          </Link>
+        </div>
+
+        {/* Header do estado */}
+        <div style={{ marginBottom: 20 }}>
+          {/* Sigla decorativa + badge + nome — empilhados, sem position absolute */}
+          <div style={{ marginBottom: 4 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
+              <span
+                className="font-display"
+                aria-hidden
+                style={{
+                  fontSize: 'clamp(48px, 18vw, 96px)',
+                  color: 'rgba(214,163,84,0.07)',
+                  lineHeight: 1,
+                  userSelect: 'none',
+                  letterSpacing: '-0.02em',
+                  flexShrink: 0,
+                }}
+              >
+                {estado.sigla}
+              </span>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <span className="badge" style={{ marginBottom: 5, display: 'inline-flex' }}>
+                  {estado.regiao}
+                </span>
+                <h1
+                  className="font-display"
+                  style={{
+                    fontSize: 'clamp(20px, 7vw, 50px)',
+                    color: 'var(--text)',
+                    lineHeight: 1,
+                    display: 'block',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {estado.nome}
+                </h1>
+              </div>
             </div>
           </div>
-          <div style={{ height:1, background:'linear-gradient(to right, rgba(214,163,84,0.4), rgba(214,163,84,0.05), transparent)', marginBottom:36 }} />
 
-          {/* Índice alfabético rápido */}
-          <div style={{ display:'flex', gap:8, flexWrap:'wrap', marginBottom:36 }}>
-            {letras.map(letra => (
-              <a key={letra} href={`#letra-${letra}`} style={{ textDecoration:'none' }}>
-                <div style={{
-                  width:36, height:36, borderRadius:8,
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                  background:'rgba(214,163,84,0.06)', border:'1px solid rgba(214,163,84,0.15)',
-                  color:'var(--gold)', fontSize:14, fontFamily:'Bebas Neue,sans-serif',
-                  letterSpacing:'0.05em', cursor:'pointer',
-                  transition:'all 0.2s',
-                }}>
-                  {letra}
-                </div>
-              </a>
-            ))}
-          </div>
+          <p style={{ color: 'var(--text-muted)', fontSize: 12, marginTop: 4 }}>
+            {totalComAcesso} participando
+            {totalSemAcesso > 0 && (
+              <span style={{ color: '#555', marginLeft: 6 }}>· {totalSemAcesso} sem acesso</span>
+            )}
+          </p>
+
+          <div style={{
+            height: 1,
+            background: 'linear-gradient(to right, rgba(214,163,84,0.4), transparent)',
+            marginTop: 16,
+            marginBottom: 20,
+          }} />
+        </div>
+
+        {/* Índice alfabético compacto */}
+        <div
+          className="alpha-index"
+          style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 24 }}
+        >
+          {letras.map(letra => (
+            <a key={letra} href={`#letra-${letra}`}>
+              <div style={{
+                width: 32, height: 32, borderRadius: 7,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(214,163,84,0.06)',
+                border: '1px solid rgba(214,163,84,0.18)',
+                color: 'var(--gold)',
+                fontSize: 13,
+                fontFamily: "'Bebas Neue', sans-serif",
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                flexShrink: 0,
+              }}>
+                {letra}
+              </div>
+            </a>
+          ))}
         </div>
 
         {/* Municípios agrupados por letra */}
-        <section style={{ paddingBottom:80 }}>
+        <section style={{ paddingBottom: 80 }}>
           {letras.map(letra => (
-            <div key={letra} id={`letra-${letra}`} style={{ marginBottom:40, scrollMarginTop:100 }}>
+            <div key={letra} id={`letra-${letra}`} style={{ marginBottom: 32, scrollMarginTop: 72 }}>
+
               {/* Separador de letra */}
-              <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
                 <div className="font-display" style={{
-                  width:48, height:48, borderRadius:10,
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                  background:'rgba(214,163,84,0.08)', border:'1px solid rgba(214,163,84,0.2)',
-                  fontSize:26, color:'var(--gold)', flexShrink:0,
+                  width: 38, height: 38, borderRadius: 9,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'rgba(214,163,84,0.08)',
+                  border: '1px solid rgba(214,163,84,0.2)',
+                  fontSize: 20, color: 'var(--gold)',
+                  flexShrink: 0,
                 }}>
                   {letra}
                 </div>
-                <div style={{ flex:1, height:1, background:'linear-gradient(to right, rgba(214,163,84,0.2), transparent)' }} />
-                <span style={{ fontSize:11, color:'var(--text-muted)' }}>
-                  {grupos[letra].length} município{grupos[letra].length !== 1 ? 's' : ''}
+                <div style={{
+                  flex: 1, height: 1,
+                  background: 'linear-gradient(to right, rgba(214,163,84,0.2), transparent)',
+                }} />
+                <span style={{ fontSize: 11, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                  {grupos[letra].length}
                 </span>
               </div>
 
-              {/* Cards dos municípios */}
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(260px, 1fr))', gap:14, marginLeft:64 }}>
+              {/* Grid — 1 coluna no mobile, 2+ em telas maiores */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
+                gap: 10,
+              }}>
                 {grupos[letra].map(municipio => {
                   const temAcesso = !!municipio.videoId;
-                  return (
-                    <div key={municipio.id}>
-                      {temAcesso ? (
-                        <Link
-                          href={`/${estado.id}/${municipio.id}`}
-                          className="card gold-glow"
-                          style={{ display:'block', textDecoration:'none', padding:'16px 20px', position:'relative', overflow:'hidden' }}
-                        >
-                          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-                            <div>
-                              <div className="font-display" style={{ fontSize:18, color:'var(--text)', lineHeight:1.2 }}>
+
+                  if (temAcesso) {
+                    return (
+                      <Link
+                        key={municipio.id}
+                        href={`/${estado.id}/${municipio.id}`}
+                        className="card gold-glow"
+                        style={{ display: 'block', overflow: 'hidden' }}
+                      >
+                        {/* Texto */}
+                        <div style={{ padding: '14px 16px 10px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                            <div style={{ minWidth: 0, flex: 1 }}>
+                              <div
+                                className="font-display"
+                                style={{
+                                  fontSize: 'clamp(16px, 4.5vw, 20px)',
+                                  color: 'var(--text)',
+                                  lineHeight: 1.2,
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                }}
+                              >
                                 {municipio.nome}
                               </div>
-                              <div style={{ fontSize:11, color:'var(--text-muted)', marginTop:4 }}>
-                                {municipio.descricao?.split('.')[0]}
-                              </div>
+                              {municipio.descricao && (
+                                <div style={{
+                                  fontSize: 11,
+                                  color: 'var(--text-muted)',
+                                  marginTop: 3,
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                }}>
+                                  {municipio.descricao.split('.')[0]}
+                                </div>
+                              )}
                             </div>
-                            <span style={{ color:'rgba(214,163,84,0.4)', fontSize:18, marginLeft:12 }}>→</span>
-                          </div>
-                          {/* Miniatura do YouTube */}
-                          <div style={{ marginTop:10, borderRadius:6, overflow:'hidden', height:80, position:'relative', background:'#0B0B0D' }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={`https://img.youtube.com/vi/${municipio.videoId}/mqdefault.jpg`}
-                              alt=""
-                              style={{ width:'100%', height:'100%', objectFit:'cover', opacity:0.4 }}
-                            />
-                            <div style={{ position:'absolute', inset:0, background:'linear-gradient(to right, rgba(17,17,17,0.6), transparent)' }} />
-                            <div style={{ position:'absolute', top:8, right:8, background:'rgba(214,163,84,0.15)', border:'1px solid rgba(214,163,84,0.3)', borderRadius:4, padding:'2px 8px', fontSize:10, color:'var(--gold)' }}>
-                              ▶ Vídeo
-                            </div>
-                          </div>
-                        </Link>
-                      ) : (
-                        // Município sem acesso — bloqueado
-                        <div style={{
-                          background:'rgba(17,17,17,0.5)',
-                          border:'1px solid #1a1a1a',
-                          borderRadius:16,
-                          padding:'16px 20px',
-                          opacity:0.55,
-                          cursor:'not-allowed',
-                          position:'relative',
-                        }}>
-                          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-                            <div>
-                              <div className="font-display" style={{ fontSize:18, color:'var(--text-muted)', lineHeight:1.2 }}>
-                                {municipio.nome}
-                              </div>
-                              <div style={{ fontSize:11, color:'#444', marginTop:4 }}>Ainda não aderiu ao projeto</div>
-                            </div>
-                            <div style={{ fontSize:18, color:'#333' }}>🔒</div>
+                            <span style={{ color: 'rgba(214,163,84,0.45)', fontSize: 15, flexShrink: 0 }}>→</span>
                           </div>
                         </div>
-                      )}
+                        {/* Thumbnail YT */}
+                        <div style={{
+                          height: 68,
+                          position: 'relative',
+                          background: '#0B0B0D',
+                          overflow: 'hidden',
+                        }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`https://img.youtube.com/vi/${municipio.videoId}/mqdefault.jpg`}
+                            alt=""
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
+                          />
+                          <div style={{
+                            position: 'absolute', inset: 0,
+                            background: 'linear-gradient(to right, rgba(17,17,17,0.7), transparent)',
+                          }} />
+                          <div style={{
+                            position: 'absolute', top: 6, right: 8,
+                            background: 'rgba(214,163,84,0.14)',
+                            border: '1px solid rgba(214,163,84,0.28)',
+                            borderRadius: 4, padding: '2px 7px',
+                            fontSize: 10, color: 'var(--gold)',
+                          }}>
+                            ▶
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  }
+
+                  // Município sem acesso (bloqueado)
+                  return (
+                    <div
+                      key={municipio.id}
+                      style={{
+                        background: 'rgba(17,17,17,0.4)',
+                        border: '1px solid #1a1a1a',
+                        borderRadius: 14,
+                        padding: '14px 16px',
+                        opacity: 0.5,
+                        cursor: 'not-allowed',
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div
+                            className="font-display"
+                            style={{
+                              fontSize: 'clamp(16px, 4.5vw, 20px)',
+                              color: 'var(--text-muted)',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {municipio.nome}
+                          </div>
+                          <div style={{ fontSize: 11, color: '#555', marginTop: 3 }}>
+                            Ainda não aderiu ao projeto
+                          </div>
+                        </div>
+                        <span style={{ fontSize: 15, flexShrink: 0 }}>🔒</span>
+                      </div>
                     </div>
                   );
                 })}
