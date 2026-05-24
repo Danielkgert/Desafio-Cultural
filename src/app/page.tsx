@@ -153,7 +153,6 @@ export default function HomePage() {
                 regiao={regiao}
                 label={regiaoLabel[regiao]}
                 estados={list}
-                defaultOpen={false}
               />
             ))}
           </div>
