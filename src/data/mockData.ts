@@ -79,7 +79,7 @@ export const BANDAS_MOCK: Record<string, Banda[]> = {
 export const estados: Estado[] = [
   { id:'acre',           nome:'Acre',              sigla:'AC', regiao:'Norte',       municipios:[
     { id:'rio-branco',   nome:'Rio Branco',   videoId:'YqeW9_5kURI', descricao:'Capital do Acre, coração da cultura seringueira amazônica.' },
-    { id:'cruzeiro-do-sul', nome:'Cruzeiro do Sul' },,
+    { id:'cruzeiro-do-sul', nome:'Cruzeiro do Sul' },
     { id:'brasileia', nome:'Brasileia' },
     { id:'sena-madureira', nome:'Sena Madureira' },
     { id:'tarauaca', nome:'Tarauacá' }
@@ -87,13 +87,13 @@ export const estados: Estado[] = [
   { id:'alagoas',        nome:'Alagoas',           sigla:'AL', regiao:'Nordeste',    municipios:[
     { id:'maceio',       nome:'Maceió',       videoId:'uelHwf8o7_U', descricao:'Praias cristalinas e rica tradição cultural alagoana.' },
     { id:'penedo',       nome:'Penedo' },
-    { id:'palmeira-dos-indios', nome:'Palmeira dos Índios' },,
+    { id:'palmeira-dos-indios', nome:'Palmeira dos Índios' },
     { id:'arapiraca', nome:'Arapiraca' },
     { id:'uniao-dos-palmares', nome:'União dos Palmares' }
   ]},
   { id:'amapa',          nome:'Amapá',             sigla:'AP', regiao:'Norte',       municipios:[
     { id:'macapa',       nome:'Macapá',       videoId:'rYEDA3JcQqw', descricao:'Cidade cruzada pela linha do Equador e palco do Marabaixo.' },
-    { id:'laranjal-do-jari', nome:'Laranjal do Jari' },,
+    { id:'laranjal-do-jari', nome:'Laranjal do Jari' },
     { id:'santana', nome:'Santana' },
     { id:'oiapoque', nome:'Oiapoque' }
   ]},
@@ -102,7 +102,7 @@ export const estados: Estado[] = [
     { id:'parintins',    nome:'Parintins',    videoId:'uelHwf8o7_U', descricao:'Terra do Boi-Bumbá — o maior festival folclórico do Brasil.' },
     { id:'tefe',         nome:'Tefé',         videoId:'rYEDA3JcQqw', descricao:'Cultura indígena e tradições amazônicas preservadas.' },
     { id:'itacoatiara',  nome:'Itacoatiara' },
-    { id:'tabatinga',    nome:'Tabatinga' },,
+    { id:'tabatinga',    nome:'Tabatinga' },
     { id:'coari', nome:'Coari' },
     { id:'humaitá', nome:'Humaitá' },
     { id:'tonantins', nome:'Tonantins' }
@@ -112,7 +112,7 @@ export const estados: Estado[] = [
     { id:'ilheus',       nome:'Ilhéus' },
     { id:'porto-seguro', nome:'Porto Seguro', videoId:'uelHwf8o7_U', descricao:'Local do descobrimento, rica cultura histórica e natural.' },
     { id:'salvador',     nome:'Salvador',     videoId:'YqeW9_5kURI', descricao:'Primeira capital do Brasil, berço da cultura afro-brasileira.' },
-    { id:'vitoria-da-conquista', nome:'Vitória da Conquista' },,
+    { id:'vitoria-da-conquista', nome:'Vitória da Conquista' },
     { id:'barreiras', nome:'Barreiras' },
     { id:'camacari', nome:'Camaçari' },
     { id:'juazeiro', nome:'Juazeiro' },
@@ -121,13 +121,13 @@ export const estados: Estado[] = [
   { id:'ceara',          nome:'Ceará',             sigla:'CE', regiao:'Nordeste',    municipios:[
     { id:'fortaleza',    nome:'Fortaleza',    videoId:'YqeW9_5kURI', descricao:'Sol, forró e a cultura vibrante do litoral cearense.' },
     { id:'juazeiro-do-norte', nome:'Juazeiro do Norte' },
-    { id:'sobral',       nome:'Sobral' },,
+    { id:'sobral',       nome:'Sobral' },
     { id:'caucaia', nome:'Caucaia' },
     { id:'crato', nome:'Crato' },
     { id:'maracanau', nome:'Maracanaú' }
   ]},
   { id:'distrito-federal', nome:'Distrito Federal', sigla:'DF', regiao:'Centro-Oeste', municipios:[
-    { id:'brasilia',     nome:'Brasília',     videoId:'9bZkp7q19f0', descricao:'Capital do Brasil, centro político e cultural da nação.' },,
+    { id:'brasilia',     nome:'Brasília',     videoId:'9bZkp7q19f0', descricao:'Capital do Brasil, centro político e cultural da nação.' },
     { id:'ceilandia', nome:'Ceilândia' },
     { id:'taguatinga', nome:'Taguatinga' },
     { id:'samambaia', nome:'Samambaia' }
@@ -135,7 +135,7 @@ export const estados: Estado[] = [
   { id:'espirito-santo', nome:'Espírito Santo',    sigla:'ES', regiao:'Sudeste',     municipios:[
     { id:'cachoeiro-de-itapemirim', nome:'Cachoeiro de Itapemirim' },
     { id:'vitoria',      nome:'Vitória',      videoId:'YqeW9_5kURI', descricao:'Capital capixaba, ilha de história e cultura viva.' },
-    { id:'vila-velha',   nome:'Vila Velha' },,
+    { id:'vila-velha',   nome:'Vila Velha' },
     { id:'colatina', nome:'Colatina' },
     { id:'linhares', nome:'Linhares' },
     { id:'serra', nome:'Serra' }
@@ -144,7 +144,7 @@ export const estados: Estado[] = [
     { id:'anapolis',     nome:'Anápolis' },
     { id:'cidade-de-goias', nome:'Cidade de Goiás', videoId:'uelHwf8o7_U', descricao:'Patrimônio da Humanidade: história e tradição colonial viva.' },
     { id:'goiania',      nome:'Goiânia',      videoId:'YqeW9_5kURI', descricao:'Capital do sertanejo universitário e do grafite brasileiro.' },
-    { id:'rio-verde',    nome:'Rio Verde' },,
+    { id:'rio-verde',    nome:'Rio Verde' },
     { id:'aparecida-de-goiania', nome:'Aparecida de Goiânia' },
     { id:'caldas-novas', nome:'Caldas Novas' },
     { id:'jatai', nome:'Jataí' }
@@ -152,14 +152,14 @@ export const estados: Estado[] = [
   { id:'maranhao',       nome:'Maranhão',          sigla:'MA', regiao:'Nordeste',    municipios:[
     { id:'barreirinhas', nome:'Barreirinhas', videoId:'9bZkp7q19f0', descricao:'Porta de entrada dos Lençóis Maranhenses e da cultura local.' },
     { id:'imperatriz',   nome:'Imperatriz' },
-    { id:'sao-luis',     nome:'São Luís',     videoId:'kffacxfA7G4', descricao:'Única capital fundada por franceses — terra do Bumba-meu-boi.' },,
+    { id:'sao-luis',     nome:'São Luís',     videoId:'kffacxfA7G4', descricao:'Única capital fundada por franceses — terra do Bumba-meu-boi.' },
     { id:'caxias', nome:'Caxias' },
     { id:'timon', nome:'Timon' }
   ]},
   { id:'mato-grosso',    nome:'Mato Grosso',       sigla:'MT', regiao:'Centro-Oeste', municipios:[
     { id:'cuiaba',       nome:'Cuiabá',       videoId:'rYEDA3JcQqw', descricao:'Coração do Brasil: Siriri, Cururu e a cultura do pantanal.' },
     { id:'rondonopolis', nome:'Rondonópolis' },
-    { id:'sinop',        nome:'Sinop' },,
+    { id:'sinop',        nome:'Sinop' },
     { id:'varzea-grande', nome:'Várzea Grande' },
     { id:'caceres', nome:'Cáceres' },
     { id:'alta-floresta', nome:'Alta Floresta' }
@@ -168,7 +168,7 @@ export const estados: Estado[] = [
     { id:'bonito',       nome:'Bonito',       videoId:'kffacxfA7G4', descricao:'Ecoturismo e cultura local na Serra da Bodoquena.' },
     { id:'campo-grande', nome:'Campo Grande', videoId:'rYEDA3JcQqw', descricao:'Morena e multicultural: gastronomia e arte pantaneira.' },
     { id:'corumba',      nome:'Corumbá' },
-    { id:'dourados',     nome:'Dourados' },,
+    { id:'dourados',     nome:'Dourados' },
     { id:'tres-lagoas', nome:'Três Lagoas' },
     { id:'ponta-pora', nome:'Ponta Porã' }
   ]},
@@ -178,7 +178,7 @@ export const estados: Estado[] = [
     { id:'juiz-de-fora', nome:'Juiz de Fora' },
     { id:'montes-claros', nome:'Montes Claros' },
     { id:'ouro-preto',   nome:'Ouro Preto',   videoId:'9bZkp7q19f0', descricao:'Patrimônio histórico e barroco brasileiro de riqueza incomparável.' },
-    { id:'uberlandia',   nome:'Uberlândia' },,
+    { id:'uberlandia',   nome:'Uberlândia' },
     { id:'betim', nome:'Betim' },
     { id:'contagem', nome:'Contagem' },
     { id:'governador-valadares', nome:'Governador Valadares' },
@@ -187,14 +187,14 @@ export const estados: Estado[] = [
   { id:'para',           nome:'Pará',              sigla:'PA', regiao:'Norte',       municipios:[
     { id:'belem',        nome:'Belém',        videoId:'kffacxfA7G4', descricao:'Cidade do Círio de Nazaré e da gastronomia paraense incomparável.' },
     { id:'maraba',       nome:'Marabá' },
-    { id:'santarem',     nome:'Santarém',     videoId:'9bZkp7q19f0', descricao:'Encontro das águas e diversidade cultural do Tapajós.' },,
+    { id:'santarem',     nome:'Santarém',     videoId:'9bZkp7q19f0', descricao:'Encontro das águas e diversidade cultural do Tapajós.' },
     { id:'altamira', nome:'Altamira' },
     { id:'castanhal', nome:'Castanhal' }
   ]},
   { id:'paraiba',        nome:'Paraíba',           sigla:'PB', regiao:'Nordeste',    municipios:[
     { id:'campina-grande', nome:'Campina Grande', videoId:'YqeW9_5kURI', descricao:'Capital do forró e do maior São João do mundo.' },
     { id:'joao-pessoa',  nome:'João Pessoa',  videoId:'uelHwf8o7_U', descricao:'A cidade mais oriental das Américas, berço do frevo paraibano.' },
-    { id:'patos',        nome:'Patos' },,
+    { id:'patos',        nome:'Patos' },
     { id:'santa-rita', nome:'Santa Rita' },
     { id:'bayeux', nome:'Bayeux' }
   ]},
@@ -203,7 +203,7 @@ export const estados: Estado[] = [
     { id:'foz-do-iguacu', nome:'Foz do Iguaçu' },
     { id:'londrina',     nome:'Londrina',     videoId:'YqeW9_5kURI', descricao:'Capital do Norte Pioneiro e polo cultural do interior paranaense.' },
     { id:'maringa',      nome:'Maringá' },
-    { id:'ponta-grossa', nome:'Ponta Grossa' },,
+    { id:'ponta-grossa', nome:'Ponta Grossa' },
     { id:'cascavel', nome:'Cascavel' },
     { id:'paranagua', nome:'Paranaguá' },
     { id:'sao-jose-dos-pinhais', nome:'São José dos Pinhais' }
@@ -212,14 +212,14 @@ export const estados: Estado[] = [
     { id:'caruaru',      nome:'Caruaru' },
     { id:'olinda',       nome:'Olinda',       videoId:'kffacxfA7G4', descricao:'Patrimônio da Humanidade: cidade histórica do frevo e maracatu.' },
     { id:'petrolina',    nome:'Petrolina' },
-    { id:'recife',       nome:'Recife',       videoId:'9bZkp7q19f0', descricao:'Capital do frevo e do carnaval mais animado do Brasil.' },,
+    { id:'recife',       nome:'Recife',       videoId:'9bZkp7q19f0', descricao:'Capital do frevo e do carnaval mais animado do Brasil.' },
     { id:'jaboatao', nome:'Jaboatão dos Guararapes' },
     { id:'paulista', nome:'Paulista' }
   ]},
   { id:'piaui',          nome:'Piauí',             sigla:'PI', regiao:'Nordeste',    municipios:[
     { id:'parnaiba',     nome:'Parnaíba' },
     { id:'picos',        nome:'Picos' },
-    { id:'teresina',     nome:'Teresina',     videoId:'rYEDA3JcQqw', descricao:'A capital mais quente do Brasil e berço do Bumba-meu-boi piauiense.' },,
+    { id:'teresina',     nome:'Teresina',     videoId:'rYEDA3JcQqw', descricao:'A capital mais quente do Brasil e berço do Bumba-meu-boi piauiense.' },
     { id:'floriano', nome:'Floriano' }
   ]},
   { id:'rio-de-janeiro', nome:'Rio de Janeiro',    sigla:'RJ', regiao:'Sudeste',     municipios:[
@@ -229,7 +229,7 @@ export const estados: Estado[] = [
     { id:'niteroi',      nome:'Niterói',      videoId:'YqeW9_5kURI', descricao:'Arte contemporânea e cultura nas margens da Baía de Guanabara.' },
     { id:'petropolis',   nome:'Petrópolis',   videoId:'uelHwf8o7_U', descricao:'A Cidade Imperial preserva sua história e tradição serrana.' },
     { id:'rio-de-janeiro-capital', nome:'Rio de Janeiro', videoId:'9bZkp7q19f0', descricao:'A Cidade Maravilhosa em toda a sua exuberância cultural.' },
-    { id:'volta-redonda', nome:'Volta Redonda' },,
+    { id:'volta-redonda', nome:'Volta Redonda' },
     { id:'duque-de-caxias', nome:'Duque de Caxias' },
     { id:'nova-iguacu', nome:'Nova Iguaçu' },
     { id:'sao-goncalo', nome:'São Gonçalo' }
@@ -237,7 +237,7 @@ export const estados: Estado[] = [
   { id:'rio-grande-do-norte', nome:'Rio Grande do Norte', sigla:'RN', regiao:'Nordeste', municipios:[
     { id:'mossoro',      nome:'Mossoró',      videoId:'kffacxfA7G4', descricao:'Terra da Chica da Silva e do baião nordestino.' },
     { id:'natal',        nome:'Natal',        videoId:'YqeW9_5kURI', descricao:'A Cidade do Sol e sua vibrante cultura potiguar.' },
-    { id:'parnamirim',   nome:'Parnamirim' },,
+    { id:'parnamirim',   nome:'Parnamirim' },
     { id:'caico', nome:'Caicó' }
   ]},
   { id:'rio-grande-do-sul', nome:'Rio Grande do Sul', sigla:'RS', regiao:'Sul',      municipios:[
@@ -245,20 +245,20 @@ export const estados: Estado[] = [
     { id:'gramado',      nome:'Gramado',      videoId:'uelHwf8o7_U', descricao:'Cinema, Natal Luz e a encantadora cultura serrana gaúcha.' },
     { id:'pelotas',      nome:'Pelotas' },
     { id:'porto-alegre', nome:'Porto Alegre', videoId:'9bZkp7q19f0', descricao:'A capital gaúcha e sua vibrante cena cultural e literária.' },
-    { id:'santa-maria',  nome:'Santa Maria' },,
+    { id:'santa-maria',  nome:'Santa Maria' },
     { id:'canoas', nome:'Canoas' },
     { id:'novo-hamburgo', nome:'Novo Hamburgo' },
     { id:'sao-leopoldo', nome:'São Leopoldo' }
   ]},
   { id:'rondonia',       nome:'Rondônia',          sigla:'RO', regiao:'Norte',       municipios:[
     { id:'ji-parana',    nome:'Ji-Paraná' },
-    { id:'porto-velho',  nome:'Porto Velho',  videoId:'kffacxfA7G4', descricao:'Capital da Amazônia Sul-Ocidental e palco da cultura ribeirinha.' },,
+    { id:'porto-velho',  nome:'Porto Velho',  videoId:'kffacxfA7G4', descricao:'Capital da Amazônia Sul-Ocidental e palco da cultura ribeirinha.' },
     { id:'ariquemes', nome:'Ariquemes' },
     { id:'cacoal', nome:'Cacoal' }
   ]},
   { id:'roraima',        nome:'Roraima',           sigla:'RR', regiao:'Norte',       municipios:[
     { id:'boa-vista',    nome:'Boa Vista',    videoId:'9bZkp7q19f0', descricao:'A capital mais ao norte do Brasil e sua rica cultura indígena.' },
-    { id:'caracarai',    nome:'Caracaraí' },,
+    { id:'caracarai',    nome:'Caracaraí' },
     { id:'rorainopolis', nome:'Rorainópolis' }
   ]},
   { id:'santa-catarina', nome:'Santa Catarina',    sigla:'SC', regiao:'Sul',         municipios:[
@@ -266,7 +266,7 @@ export const estados: Estado[] = [
     { id:'chapeco',      nome:'Chapecó' },
     { id:'criciuma',     nome:'Criciúma' },
     { id:'florianopolis', nome:'Florianópolis', videoId:'rYEDA3JcQqw', descricao:'A Ilha da Magia e suas manifestações culturais açorianas.' },
-    { id:'joinville',    nome:'Joinville' },,
+    { id:'joinville',    nome:'Joinville' },
     { id:'balneario-camboriu', nome:'Balneário Camboriú' },
     { id:'itajai', nome:'Itajaí' },
     { id:'lages', nome:'Lages' },
@@ -281,7 +281,7 @@ export const estados: Estado[] = [
     { id:'sao-bernardo-do-campo', nome:'São Bernardo do Campo' },
     { id:'sao-jose-dos-campos', nome:'São José dos Campos' },
     { id:'sao-paulo',    nome:'São Paulo',    videoId:'YqeW9_5kURI', descricao:'A maior metrópole do Brasil exibe sua diversidade cultural única.' },
-    { id:'sorocaba',     nome:'Sorocaba' },,
+    { id:'sorocaba',     nome:'Sorocaba' },
     { id:'bauru', nome:'Bauru' },
     { id:'mogi-das-cruzes', nome:'Mogi das Cruzes' },
     { id:'osasco', nome:'Osasco' },
@@ -290,13 +290,13 @@ export const estados: Estado[] = [
   ]},
   { id:'sergipe',        nome:'Sergipe',           sigla:'SE', regiao:'Nordeste',    municipios:[
     { id:'aracaju',      nome:'Aracaju',      videoId:'YqeW9_5kURI', descricao:'A menor capital do Brasil e seu rico patrimônio cultural sergipano.' },
-    { id:'lagarto',      nome:'Lagarto' },,
+    { id:'lagarto',      nome:'Lagarto' },
     { id:'estancia', nome:'Estância' },
     { id:'itabaiana', nome:'Itabaiana' }
   ]},
   { id:'tocantins',      nome:'Tocantins',         sigla:'TO', regiao:'Norte',       municipios:[
     { id:'araguaina',    nome:'Araguaína' },
-    { id:'palmas',       nome:'Palmas',       videoId:'uelHwf8o7_U', descricao:'A mais jovem capital do Brasil e sua identidade cultural em formação.' },,
+    { id:'palmas',       nome:'Palmas',       videoId:'uelHwf8o7_U', descricao:'A mais jovem capital do Brasil e sua identidade cultural em formação.' },
     { id:'gurupi', nome:'Gurupi' },
     { id:'porto-nacional', nome:'Porto Nacional' }
   ]},
@@ -319,7 +319,7 @@ export function getMunicipiosAgrupados(estadoId: string): Record<string, Municip
   const estado = getEstado(estadoId);
   if (!estado) return {};
   const sorted = [...estado.municipios]
-    .filter(m => m && m.nome && m.nome.length > 0)
+    .filter((m): m is Municipio => Boolean(m && m.nome && m.nome.length > 0))
     .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
   return sorted.reduce<Record<string, Municipio[]>>((acc, m) => {
     const letra = m.nome[0].toUpperCase();

@@ -10,7 +10,7 @@ import VotingSection from '../../../components/VotingSection';
 interface Props { params: { estado: string; municipio: string } }
 
 export function generateStaticParams() {
-  return estados.flatMap(e => e.municipios.map(m => ({ estado: e.id, municipio: m.id })));
+  return estados.flatMap(e => e.municipios.filter(m => Boolean(m)).map(m => ({ estado: e.id, municipio: m.id })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
