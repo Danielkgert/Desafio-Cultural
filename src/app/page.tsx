@@ -137,7 +137,7 @@ export default function HomePage() {
           </a>
         </div>
 
-        {/* ── Regiões em accordion ── */}}
+        {/* ── Regiões em accordion ── */}
         <section style={{
           padding: '0 16px 80px',
           maxWidth: 1100,
