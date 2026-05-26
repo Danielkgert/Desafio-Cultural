@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import AOSInit from '../components/AOSInit';
+import Footer from '../components/Footer';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ background:'var(--bg-primary)', color:'var(--text)', fontFamily:"'Inter', sans-serif" }}>
         <AOSInit />
         {children}
+        <Footer />
       </body>
     </html>
   );

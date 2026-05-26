@@ -233,34 +233,36 @@ export default function EstadoPage({ params }: Props) {
                     <div
                       key={municipio.id}
                       style={{
-                        background: 'rgba(17,17,17,0.4)',
-                        border: '1px solid #1a1a1a',
+                        background: 'transparent',
+                        border: '1px solid rgba(255,255,255,0.04)',
                         borderRadius: 14,
-                        padding: '14px 16px',
-                        opacity: 0.5,
+                        padding: '12px 16px',
                         cursor: 'not-allowed',
+                        display: 'flex', alignItems: 'center', gap: 12,
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                        <div style={{ minWidth: 0, flex: 1 }}>
-                          <div
-                            className="font-display"
-                            style={{
-                              fontSize: 'clamp(16px, 4.5vw, 20px)',
-                              color: 'var(--text-muted)',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            {municipio.nome}
-                          </div>
-                          <div style={{ fontSize: 11, color: '#555', marginTop: 3 }}>
-                            Ainda não aderiu ao projeto
-                          </div>
-                        </div>
-                        <span style={{ fontSize: 15, flexShrink: 0 }}>🔒</span>
+                      <div className="font-display" style={{
+                        fontSize: 34, color: 'rgba(255,255,255,0.05)',
+                        lineHeight: 1, flexShrink: 0, userSelect: 'none',
+                      }}>
+                        {municipio.nome[0]}
                       </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="font-display" style={{
+                          fontSize: 'clamp(14px, 4vw, 17px)',
+                          color: 'rgba(255,255,255,0.18)',
+                          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                        }}>
+                          {municipio.nome}
+                        </div>
+                        <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.1)', marginTop: 3 }}>
+                          não integrou ainda
+                        </div>
+                      </div>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
                     </div>
                   );
                 })}

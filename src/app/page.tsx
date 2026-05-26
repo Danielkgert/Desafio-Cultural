@@ -89,9 +89,9 @@ export default function HomePage() {
             flexWrap: 'wrap',
           }}>
             {[
-              { label: 'Estados',    value: todosEstados.length },
-              { label: 'Municípios', value: totalMunicipios },
-              { label: 'Regiões',    value: regioes.length },
+              { label: 'Estados',    value: 26 },
+              { label: 'Municípios', value: 5569 },
+              { label: 'Regiões',    value: 5 },
             ].map((s, i) => (
               <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
                 {i > 0 && (
@@ -119,7 +119,25 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Regiões em accordion ── */}
+        {/* ── Botão Explorar ── */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 8, marginTop: -8 }}>
+          <a href="/explorar" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: 'rgba(214,163,84,0.08)',
+            border: '1px solid rgba(214,163,84,0.25)',
+            borderRadius: 12, padding: '10px 20px',
+            color: 'var(--gold)', textDecoration: 'none',
+            fontSize: 13, fontFamily: 'Inter, sans-serif', fontWeight: 500,
+            transition: 'all 0.2s',
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            Buscar estado ou município
+          </a>
+        </div>
+
+        {/* ── Regiões em accordion ── */}}
         <section style={{
           padding: '0 16px 80px',
           maxWidth: 1100,
@@ -173,31 +191,6 @@ export default function HomePage() {
             Município ainda não aderiu ao projeto
           </span>
         </div>
-
-        {/* Footer */}
-        <footer style={{
-          borderTop: '1px solid #1F1F1F',
-          padding: '24px 16px',
-          textAlign: 'center',
-        }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            gap: 12, marginBottom: 8,
-          }}>
-            <div style={{ height: 1, width: 36, background: 'linear-gradient(to right, transparent, rgba(214,163,84,0.3))' }} />
-            <Logo size={24} />
-            <div style={{ height: 1, width: 36, background: 'linear-gradient(to left, transparent, rgba(214,163,84,0.3))' }} />
-          </div>
-          <p className="font-display" style={{
-            fontSize: 10, color: 'var(--text-muted)',
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-          }}>
-            Desafio Cultural — Brasil
-          </p>
-          <p style={{ fontSize: 10, color: '#333', marginTop: 3 }}>
-            © {new Date().getFullYear()} Todos os direitos reservados.
-          </p>
-        </footer>
       </div>
     </main>
   );
