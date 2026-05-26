@@ -372,7 +372,7 @@ function Vazio({ termo, onLimpar }: { termo: string; onLimpar: () => void }) {
       <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
       <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16 }}>
         {termo
-          ? <>Nenhum resultado para <strong style={{ color: 'var(--gold)' }}>"{termo}"</strong></>
+          ? <>Nenhum resultado para <strong style={{ color: 'var(--gold)' }}>{termo}</strong></>
           : 'Nenhum resultado para os filtros selecionados'}
       </p>
       <button
