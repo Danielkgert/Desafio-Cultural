@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { estados, getEstado, getMunicipiosAgrupados } from '../../data/mockData';
 import Header from '../../components/Header';
 import AmbientGlow from '../../components/AmbientGlow';
+import SponsorBanner from '../../components/SponsorBanner';
+import LetraNav from '../../components/LetraNav';
 
 interface Props { params: { estado: string } }
 
@@ -101,24 +103,7 @@ export default function EstadoPage({ params }: Props) {
           className="alpha-index"
           style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 24 }}
         >
-          {letras.map(letra => (
-            <a key={letra} href={`#letra-${letra}`}>
-              <div style={{
-                width: 32, height: 32, borderRadius: 7,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(214,163,84,0.06)',
-                border: '1px solid rgba(214,163,84,0.18)',
-                color: 'var(--gold)',
-                fontSize: 13,
-                fontFamily: "'Bebas Neue', sans-serif",
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                flexShrink: 0,
-              }}>
-                {letra}
-              </div>
-            </a>
-          ))}
+          <LetraNav letras={letras} />
         </div>
 
         {/* Municípios agrupados por letra */}
@@ -270,6 +255,12 @@ export default function EstadoPage({ params }: Props) {
             </div>
           ))}
         </section>
+
+        {/* ── Banner de patrocinador ── */}
+        <div style={{ padding: '0 0 40px' }}>
+          <SponsorBanner />
+        </div>
+
       </div>
     </main>
   );

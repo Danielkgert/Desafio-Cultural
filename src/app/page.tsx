@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Logo from '../components/Logo';
 import AmbientGlow from '../components/AmbientGlow';
 import RegiaoAccordion from '../components/RegiaoAccordion';
+import SponsorBanner from '../components/SponsorBanner';
 
 export const metadata: Metadata = { title: 'Desafio Cultural — Selecione um Estado' };
 
@@ -175,6 +176,11 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* ── Banner de patrocinador — Home ── */}
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 16px 28px' }}>
+          <SponsorBanner />
+        </div>
 
         {/* Legenda */}
         <div style={{

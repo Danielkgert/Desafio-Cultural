@@ -6,6 +6,7 @@ import Header from '../../../components/Header';
 import AmbientGlow from '../../../components/AmbientGlow';
 import VideoPlayer from '../../../components/VideoPlayer';
 import VotingSection from '../../../components/VotingSection';
+import SponsorBanner from '../../../components/SponsorBanner';
 
 interface Props { params: { estado: string; municipio: string } }
 
@@ -143,6 +144,11 @@ export default function MunicipioPage({ params }: Props) {
           bandasPorGenero={bandasPorGenero}
           generosOrdenados={generosOrdenados}
         />
+
+        {/* ── Banner de patrocinador ── */}
+        <div style={{ marginTop: 36, marginBottom: 8 }}>
+          <SponsorBanner />
+        </div>
 
         {/* Outros municípios */}
         {others.length > 0 && (

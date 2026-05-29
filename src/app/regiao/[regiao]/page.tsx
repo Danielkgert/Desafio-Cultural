@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { regiaoLabel, getEstadosOrdenados, type Regiao, type Estado } from '../../../data/mockData';
 import Header from '../../../components/Header';
 import AmbientGlow from '../../../components/AmbientGlow';
+import SponsorBanner from '../../../components/SponsorBanner';
 
 interface Props { params: { regiao: string } }
 
@@ -37,15 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Agrupa estados por primeira letra do nome
-function agruparPorLetra(estados: Estado[]): Record<string, Estado[]> {
-  return estados.filter(e => e && e.nome && e.nome.length > 0).reduce<Record<string, Estado[]>>((acc, e) => {
-    const letra = e.nome[0].toUpperCase();
-    if (!acc[letra]) acc[letra] = [];
-    acc[letra].push(e);
-    return acc;
-  }, {});
-}
+
 
 export default function RegiaoPage({ params }: Props) {
   const regiao  = slugToRegiao(params.regiao);
@@ -56,16 +49,24 @@ export default function RegiaoPage({ params }: Props) {
   const estados = todos.filter(e => e.regiao === regiao);
   if (estados.length === 0) notFound();
 
-  const grupos = agruparPorLetra(estados);
-  const letras = Object.keys(grupos).sort();
-
-  const totalMunicipios   = estados.reduce((acc, e) => acc + e.municipios.length, 0);
+  // Totais reais de municípios por região (IBGE)
+  const totalMunicipiosOficial: Partial<Record<Regiao, number>> = {
+    'Centro-Oeste': 466,
+    'Nordeste':    1794,
+    'Norte':        450,
+    'Sudeste':     1668,
+    'Sul':         1191,
+  };
+  const totalMunicipios = totalMunicipiosOficial[regiao] ??
+    estados.reduce((acc, e) => acc + e.municipios.filter(m => m && m.nome).length, 0);
   const totalParticipando = estados.reduce(
-    (acc, e) => acc + e.municipios.filter(m => m.videoId).length, 0
+    (acc, e) => acc + e.municipios.filter(m => m && m.videoId).length, 0
   );
 
-  // Quantos estados têm ao menos 1 município participando
-  const estadosAtivos = estados.filter(e => e.municipios.some(m => m.videoId)).length;
+  // Separar DF dos demais
+  const df       = estados.filter(e => e.sigla === 'DF');
+  const estadosSemDF = estados.filter(e => e.sigla !== 'DF').sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  const estadosOrdenados = [...estadosSemDF, ...df];
 
   return (
     <main style={{ minHeight: '100vh', background: 'var(--bg-primary)', position: 'relative' }}>
@@ -90,11 +91,18 @@ export default function RegiaoPage({ params }: Props) {
           </h1>
           <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
             <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>
-              <span style={{ color: 'var(--gold)', fontWeight: 600 }}>{estados.length}</span>{' '}
-              estado{estados.length !== 1 ? 's' : ''}
+              <span style={{ color: 'var(--gold)', fontWeight: 600 }}>{estadosSemDF.length}</span>
+              {' '}Estados
+              {df.length > 0 && (
+                <>
+                  {' / '}
+                  <span style={{ color: 'var(--gold)', fontWeight: 600 }}>{df.length}</span>
+                  {' '}Distrito Federal
+                </>
+              )}
             </span>
             <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>
-              <span style={{ color: 'var(--gold)', fontWeight: 600 }}>{totalMunicipios}</span>{' '}
+              <span style={{ color: 'var(--gold)', fontWeight: 600 }}>{totalMunicipios.toLocaleString('pt-BR')}</span>{' '}
               municípios
             </span>
             <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>
@@ -109,63 +117,16 @@ export default function RegiaoPage({ params }: Props) {
           }} />
         </div>
 
-        {/* Índice alfabético de letras */}
-        {letras.length > 1 && (
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 28 }}>
-            {letras.map(letra => (
-              <a key={letra} href={`#estado-letra-${letra}`}>
-                <div style={{
-                  width: 32, height: 32, borderRadius: 7,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: 'rgba(214,163,84,0.06)',
-                  border: '1px solid rgba(214,163,84,0.18)',
-                  color: 'var(--gold)', fontSize: 13,
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  cursor: 'pointer', flexShrink: 0,
-                  transition: 'all 0.2s',
-                }}>
-                  {letra}
-                </div>
-              </a>
-            ))}
-          </div>
-        )}
 
-        {/* Estados agrupados por letra */}
+
+        {/* Estados em ordem alfabética — sem separadores por letra */}
         <section style={{ paddingBottom: 80 }}>
-          {letras.map(letra => (
-            <div
-              key={letra}
-              id={`estado-letra-${letra}`}
-              style={{ marginBottom: 32, scrollMarginTop: 72 }}
-            >
-              {/* Separador de letra */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-                <div className="font-display" style={{
-                  width: 38, height: 38, borderRadius: 9,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: 'rgba(214,163,84,0.08)',
-                  border: '1px solid rgba(214,163,84,0.2)',
-                  fontSize: 20, color: 'var(--gold)', flexShrink: 0,
-                }}>
-                  {letra}
-                </div>
-                <div style={{
-                  flex: 1, height: 1,
-                  background: 'linear-gradient(to right, rgba(214,163,84,0.2), transparent)',
-                }} />
-                <span style={{ fontSize: 11, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
-                  {grupos[letra].length} estado{grupos[letra].length !== 1 ? 's' : ''}
-                </span>
-              </div>
-
-              {/* Cards dos estados */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
-                gap: 10,
-              }}>
-                {grupos[letra].map(estado => {
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
+            gap: 10,
+          }}>
+            {estadosOrdenados.map(estado => {
                   const temMunicipioAtivo = estado.municipios.some(m => m.videoId);
                   const munAtivos = estado.municipios.filter(m => m.videoId).length;
                   const munTotal  = estado.municipios.length;
@@ -257,11 +218,14 @@ export default function RegiaoPage({ params }: Props) {
                       </div>
                     </div>
                   );
-                })}
-              </div>
-            </div>
-          ))}
+            })}
+          </div>
         </section>
+
+        {/* ── Banner de patrocinador ── */}
+        <div style={{ paddingBottom: 40 }}>
+          <SponsorBanner />
+        </div>
 
       </div>
     </main>

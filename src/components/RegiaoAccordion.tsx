@@ -77,12 +77,23 @@ const regiaoDesc: Record<Regiao, string> = {
   'Sul':          'Gauchesca, influências europeias e natureza serrana',
 };
 
-const totalMunicipios = (ests: Estado[]) =>
-  ests.reduce((acc, e) => acc + e.municipios.length, 0);
+// Totais reais de municípios por região (oficial IBGE)
+const totalMunicipiosOficial: Partial<Record<Regiao, number>> = {
+  'Centro-Oeste': 466,
+  'Nordeste':    1794,
+  'Norte':        450,
+  'Sudeste':     1668,
+  'Sul':         1191,
+};
+
+const totalMunicipios = (ests: Estado[], regiao: Regiao) => {
+  if (totalMunicipiosOficial[regiao] !== undefined) return totalMunicipiosOficial[regiao]!;
+  return ests.reduce((acc, e) => acc + e.municipios.length, 0);
+};
 
 export default function RegiaoAccordion({ regiao, label, estados }: Props) {
   const slug        = regiaoToSlug(regiao);
-  const totalMun    = totalMunicipios(estados);
+  const totalMun    = totalMunicipios(estados, regiao);
   const participando = estados
     .flatMap(e => e.municipios)
     .filter(m => m.videoId).length;
@@ -146,13 +157,22 @@ export default function RegiaoAccordion({ regiao, label, estados }: Props) {
                   {estados.length} estado{estados.length !== 1 ? 's' : ''}
                 </span>
                 <span style={{
+                  fontSize: 10, color: 'var(--text-muted)',
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: 20, padding: '2px 8px',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {totalMun.toLocaleString('pt-BR')} municípios
+                </span>
+                <span style={{
                   fontSize: 10, color: 'var(--gold)',
                   background: 'rgba(214,163,84,0.07)',
                   border: '1px solid rgba(214,163,84,0.15)',
                   borderRadius: 20, padding: '2px 8px',
                   whiteSpace: 'nowrap',
                 }}>
-                  {participando} participando
+                  {participando} Municípios participando
                 </span>
               </div>
             </div>

@@ -4,6 +4,7 @@ import { getEstadosOrdenados } from '../../data/mockData';
 import Header from '../../components/Header';
 import AmbientGlow from '../../components/AmbientGlow';
 import FiltroEstados from '../../components/FiltroEstados';
+import SponsorBanner from '../../components/SponsorBanner';
 
 export const metadata: Metadata = {
   title: 'Explorar — Desafio Cultural',
@@ -44,6 +45,10 @@ export default function ExplorarPage() {
         </div>
 
         <FiltroEstados estados={estados} />
+      </div>
+      {/* ── Banner de patrocinador ── */}
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 16px 40px' }}>
+        <SponsorBanner />
       </div>
     </main>
   );
